@@ -4,7 +4,7 @@ namespace Repository;
 
 abstract class AbstractRepository {
   abstract public function save();
-  abstract public function findOne();
-  abstract public function findOneBy();
-  abstract public function findAllBy();
+  abstract public function findOne(int $id);
+  abstract public function findOneBy(array $options);
+  abstract public function findAllBy(array $options);
 }

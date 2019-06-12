@@ -9,15 +9,15 @@ class Invoice extends AbstractRepository {
     // TODO: Implement save() method.
   }
 
-  public function findOne() {
+  public function findOne(int $id) {
     // TODO: Implement findOne() method.
   }
 
-  public function findAllBy() {
+  public function findAllBy(array $options) {
     // TODO: Implement findAllBy() method.
   }
 
-  public function findOneBy() {
+  public function findOneBy(array $options) {
     // TODO: Implement findOneBy() method.
   }
 }
