@@ -4,6 +4,7 @@ namespace Helper\Route;
 
 use \Exception;
 
+
 class Route
 {
 
@@ -74,7 +75,7 @@ class Route
   /**
    * @return string
    */
-  public function getController(): string {
+  public function getController() {
     return $this->controller;
   }
 

@@ -2,43 +2,15 @@
 
 use \Helper\Route\Route;
 use \Helper\Route\Router;
+use \Controller\Type\Home;
+use \Helper\Route\Processor;
 
 $basePath = $_SERVER['DOCUMENT_ROOT'] . '/../';
 require_once $basePath . 'src/Helper/Autoloader/Autoloader.php';
 
-$routes = [
-  [
-    'pattern' => '^/$',
-    'controller' => 'home',
-    'method' => 'index'
-  ],
-  [
-    'pattern' => '^/customer$',
-    'controller' => 'customer',
-    'method' => 'index'
-  ],
-  [
-    'pattern' => '^/customer{id}$',
-    'controller' => 'customer',
-    'method' => 'record'
-  ],
-  [
-    'pattern' => '^/invoice/add$',
-    'controller' => 'invoice',
-    'method' => 'add'
-  ]
-];
+$routes = require_once $basePath . '/app/config/routing.php';
 
-$routesBuild = [];
-foreach ($routes as $routeData) {
-  $route = new Route($routeData);
-  $routesBuild[] = $route;
-}
 
-$currentPattern = $_SERVER['QUERY_STRING'];
-$router = new Router();
-$router->register($route);
-$knownRoute = $router->process($currentPattern);
-
-$controller = $knownRoute->getController();
-$template = $controller->{$knownRoute->getMethod()};
+$processor = new Processor();
+$router = $processor->make($routes);
+return $processor->process($router, '/');

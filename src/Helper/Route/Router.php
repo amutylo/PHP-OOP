@@ -25,6 +25,7 @@ class Router
 
   public function process(string $currentUri)
   {
+
     if (false === isset($this->routes[$currentUri])) {
       throw new Exception('Cannot find route for ' . $currentUri, 404);
     }

@@ -2,15 +2,17 @@
 
 class Autoloader
 {
-  public static function loader (string $className)
+  public static function load (string $className)
   {
-    $basePath = $_SERVER['DOCUMENT_ROOT'] . '/../';
+
+    $basePath = $_SERVER['DOCUMENT_ROOT'] . '/../src/';
     $extension = '.php';
 
     $classPath = str_replace('\\', DIRECTORY_SEPARATOR, $className);
     $fullPath = $basePath . $classPath . $extension;
-
+//    var_dump($fullPath);
     include_once $fullPath;
+
   }
 }
 

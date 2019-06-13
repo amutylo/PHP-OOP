@@ -9,6 +9,9 @@ class Home extends AbstractController
 
   public function index()
   {
-    return "You have accessed home controller and fire index method.";
+    return [
+      'view' => 'views/home.php',
+      'params' => []
+    ];
   }
 }
