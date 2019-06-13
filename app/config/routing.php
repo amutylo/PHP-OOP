@@ -1,12 +1,17 @@
 <?php
 
 
-use Controller\Type\Home;
+use Controller\Type;
 
 return [
   [
     'pattern' => '/',
-    'controller' => Home::class,
+    'controller' => Type\Home::class,
     'method' => 'index'
+  ],
+  [
+    'pattern' => '/list',
+    'controller' => Type\Home::class,
+    'method' => 'list'
   ]
 ];

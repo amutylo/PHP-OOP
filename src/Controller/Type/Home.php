@@ -14,4 +14,12 @@ class Home extends AbstractController
       'params' => []
     ];
   }
+
+  public function list()
+  {
+    return [
+      'view' => 'views/list.php',
+      'params' => []
+    ];
+  }
 }

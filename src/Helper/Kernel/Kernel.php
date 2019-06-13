@@ -1,8 +1,5 @@
 <?php
 
-use \Helper\Route\Route;
-use \Helper\Route\Router;
-use \Controller\Type\Home;
 use \Helper\Route\Processor;
 
 $basePath = $_SERVER['DOCUMENT_ROOT'] . '/../';
