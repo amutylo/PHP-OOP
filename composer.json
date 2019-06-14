@@ -1,0 +1,14 @@
+{
+  "name": "myproject/php-oop",
+  "type": "project",
+  "authors": [
+      {
+          "name": "Andrii Mutylo",
+          "email": "amutylo@gmail.com"
+      }
+  ],
+  "require": {},
+  "require-dev": {
+    "codeception/codeception": "^3.0"
+  }
+}

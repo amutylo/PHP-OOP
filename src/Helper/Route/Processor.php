@@ -6,6 +6,14 @@ use Exception;
 
 class Processor
 {
+
+  /**
+   * @param \Helper\Route\Router $router
+   * @param string $currentUri
+   *
+   * @return mixed
+   * @throws \Exception
+   */
   public function process (Router $router, string $currentUri)
   {
     $knownRoute = $router->process($currentUri);
@@ -16,7 +24,12 @@ class Processor
 
     return $controller->{$method}();
   }
-  
+
+  /**
+   * @param array $routes
+   *
+   * @return \Helper\Route\Router
+   */
   public function make(array $routes): Router
   {
 

@@ -5,12 +5,13 @@ volumes:
 
 services:
   web:
-    image: php:7.3-apache-stretch
+    build:
+      context: .
     ports:
       - 80:80
     volumes:
       - .:/var/www/html
-      - ./apache/conf/000-default.conf:/etc/apache2/sites-available/000-default.conf
+      - ./apache/conf:/etc/apache2/sites-available
 
     environment:
       - APACHE_DOCUMENT_ROOT=/var/www/html/public
