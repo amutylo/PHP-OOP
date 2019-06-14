@@ -7,7 +7,7 @@ return [
   [
     'pattern' => '/',
     'controller' => Type\Home::class,
-    'method' => 'index'
+    'method' => 'list'
   ],
   [
     'pattern' => '/list',
