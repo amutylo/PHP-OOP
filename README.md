@@ -33,7 +33,10 @@ https://docs.docker.com/machine/install-machine/
   $ docker-machine ip oop-php
   //have to be 192.168.99.100
   //Put IP in browser
+                                    
 
+  //Stop all running containers. 
+  $ docker stop $(docker ps -aq)
   //remove containers
   $ docker-compose down -v
   //clean all images
