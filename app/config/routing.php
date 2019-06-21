@@ -7,11 +7,11 @@ return [
   [
     'pattern' => '/',
     'controller' => Type\Home::class,
-    'method' => 'list'
+    'method' => 'index'
   ],
   [
-    'pattern' => '/list',
-    'controller' => Type\Home::class,
-    'method' => 'list'
+    'pattern' => '/invoice',
+    'controller' => Type\Invoice::class,
+    'method' => 'index'
   ]
 ];

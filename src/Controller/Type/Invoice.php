@@ -4,13 +4,13 @@ namespace Controller\Type;
 
 use Controller\AbstractController;
 
-class Home extends AbstractController
+class Invoice extends AbstractController
 {
 
   public function index()
   {
     return [
-      'view' => 'views/home.php',
+      'view' => 'views/invoice.php',
       'params' => []
     ];
   }
