@@ -12,19 +12,30 @@ class Processor
    * @param string $currentUri
    *
    * @return mixed
+   * 
    * @throws \Exception
    */
-  public function process (Router $router, string $currentUri)
+  public function run (Router $router, string $currentUri)
   {
-    $knownRoute = $router->process($currentUri);
+    $parsedUrl = parse_url($currentUri);
+    $path = $parsedUrl['path'];
 
-    $controllerName = $knownRoute->getController();
-    $controller = new $controllerName();
-    $method = $knownRoute->getMethod();
+    foreach ($router->getRoutes() as $pattern => $route) {
+      
+      if (FALSE === $route instanceof Route) {
+        throw new Exception('This is not a route'); 
+      }
+      
+      if (preg_match('#^' . $pattern . '$#', $path, $matches)) {
+        $controllerName = $route->getController();
+        $controller = new $controllerName();
 
-    return $controller->{$method}();
+        break;
+      }
+    }
+
+    return $controller->{$route->getMethod()}();
   }
-
   /**
    * @param array $routes
    *

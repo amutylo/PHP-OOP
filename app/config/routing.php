@@ -10,7 +10,7 @@ return [
     'method' => 'index'
   ],
   [
-    'pattern' => '/invoice',
+    'pattern' => '/invoice/([0-9]*)',
     'controller' => Type\Invoice::class,
     'method' => 'index'
   ]

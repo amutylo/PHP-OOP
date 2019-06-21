@@ -10,4 +10,4 @@ $routes = require_once $basePath . '/app/config/routing.php';
 
 $processor = new Processor();
 $router = $processor->make($routes);
-return $processor->process($router, $_SERVER['REQUEST_URI']);
+return $processor->run($router, $_SERVER['REQUEST_URI']);
