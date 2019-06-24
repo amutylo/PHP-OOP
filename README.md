@@ -27,7 +27,7 @@ https://docs.docker.com/machine/install-machine/
   $ docker-compose up -d --build
 
   //going into bash
-  $ docker exec -it oop-php_web_1 bash
+  $ docker exec -it php-oop_web_1 bash
 
   //Find IP of docker machine
   $ docker-machine ip oop-php

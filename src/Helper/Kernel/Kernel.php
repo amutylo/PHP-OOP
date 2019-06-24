@@ -1,11 +1,11 @@
 <?php
 
-use \Helper\Route\Processor;
+use App\Helper\Route\Processor;
 
 $basePath = $_SERVER['DOCUMENT_ROOT'] . '/../';
-require_once $basePath . 'src/Helper/Autoloader/Autoloader.php';
+require_once $basePath . 'vendor/autoload.php';
 
-$routes = require_once $basePath . '/app/config/routing.php';
+$routes = require_once $basePath . '/app/routes.php';
 
 
 $processor = new Processor();

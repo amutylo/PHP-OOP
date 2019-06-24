@@ -1,8 +1,6 @@
 <?php
 
-namespace Helper\Route;
-
-use Exception;
+namespace App\Helper\Route;
 
 class Router
 {
@@ -10,30 +8,16 @@ class Router
   /**
    * @var array
    */
-  private $routes = [];
-
+  private static $routes = [];
   /**
-   * @param \Helper\Route\Route $route
-   *
-   * @return $this
+   * @param Route $route
    */
-  public function register (Route $route)
-  {
-    $this->routes[$route->getPattern()] = $route;
-    return $this;
-  }
-
-  public function process(string $currentUri)
-  {
-
-    if (false === isset($this->routes[$currentUri])) {
-      throw new Exception('Cannot find route for ' . $currentUri, 404);
-    }
-    return $this->routes[$currentUri];
+  public static function add(Route $route) {
+    self::$routes[$route->getPattern()] = $route;
   }
 
   public function  getRoutes():array
   {
-    return $this->routes;
+    return self::$routes;
   }
 }
