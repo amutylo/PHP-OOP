@@ -2,6 +2,8 @@
 
 namespace Helper\Route;
 
+use App\Helper\Route\Route;
+
 class RouteTest extends \Codeception\Test\Unit
 {
     /**
@@ -39,7 +41,7 @@ class RouteTest extends \Codeception\Test\Unit
     {
       $route = new Route();
       $route->setController(Home::class)
-        ->setMethod(['GET'])
+        ->setMethods(['GET'])
         ->setPattern('/')
         ->setAction('index')
       ;
@@ -48,4 +50,16 @@ class RouteTest extends \Codeception\Test\Unit
       $this->assertSame('/', $route->getPattern());
       $this->assertSame('index', $route->getAction());
     }
+
+  /**
+   * @group route
+   * @group route-upper-case-method
+   */
+  public function testUpperCaseMethod()
+  {
+    $route = new Route();
+    $route->setMethods(['GET']);
+    
+    $this->assertSame(['GET'], $route->getMethod());
+  }
 }

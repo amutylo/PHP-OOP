@@ -54,7 +54,7 @@ class RouterTest extends \Codeception\Test\Unit
   {
     $route = new Route();
     $route->setPatter('/')
-      ->setMethod('GET')
+      ->setMethods('GET')
       ->setController(Home::class)
       ->setAction('index')
     ;
@@ -74,7 +74,7 @@ class RouterTest extends \Codeception\Test\Unit
   {
     $route = new Route();
     $route->setPatter('/')
-      ->setMethod('GET')
+      ->setMethods('GET')
       ->setController(Home::class)
       ->setAction('index')
     ;
