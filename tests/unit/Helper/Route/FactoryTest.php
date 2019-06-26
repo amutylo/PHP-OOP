@@ -30,9 +30,9 @@ class FactoryTest extends \Codeception\Test\Unit
    */
   public function testMakeRoute() {
     $factory = new Factory();
-    $route = $factory->make([
+    $route = $factory->addRoute([
       'pattern' => '/',
-      'controller' => Home::class,
+      'controller' => Type\Home::class,
       'method' => 'GET',
       'action' => 'index'
     ]);
@@ -69,7 +69,7 @@ class FactoryTest extends \Codeception\Test\Unit
     $factory = new Factory();
     $results = [];
     foreach ($routes as $data) {
-      $results = $factory->make($data);
+      $results = $factory->addRoute($data);
     }
 
     $this->assertEquals(count($routes), count($results));

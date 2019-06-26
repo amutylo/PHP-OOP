@@ -39,5 +39,25 @@ class Validation
   public function hasValidator($className): bool {
     return key_exists($className, $this->validators);
   }
+
+  /**
+   * @param Route $route
+   *
+   * @return bool
+   */
+  public function validate(Route $route): bool
+  {
+    $isValid = false;
+    foreach ($this->validators as $validator) {
+      if ($validator instanceof InterfaceValidator) {
+        $validator->setRoute();
+        $isValid = $validator->isValid();
+        if (false === $isValid) {
+          break;
+        }
+      }
+    }
+    return $isValid;
+  }
 }
 

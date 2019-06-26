@@ -33,8 +33,8 @@ class Processor
         break;
       }
     }
-
-    return $controller->{$route->getMethod()}();
+    
+    return $controller->{$route->getMethods()}();
   }
   /**
    * @param array $routes
@@ -43,11 +43,10 @@ class Processor
    */
   public function make(array $routes): Router
   {
-
     $router = new Router();
     foreach ($routes as $routeData) {
       $route = new Route($routeData);
-      $router->register($route);
+      $router->add($route);
     }
     return $router;
   }

@@ -2,12 +2,13 @@
 
 use App\Helper\Route\Processor;
 
-$basePath = $_SERVER['DOCUMENT_ROOT'] . '/../';
-require_once $basePath . 'vendor/autoload.php';
+require_once 'config.php';
+require_once BASE_PATH . 'vendor/autoload.php';
+require_once 'bootstrap.php';
 
-$routes = require_once $basePath . '/app/routes.php';
 
 
-$processor = new Processor();
-$router = $processor->make($routes);
-return $processor->run($router, $_SERVER['REQUEST_URI']);
+//$processor = new Processor();
+//
+//$router = $processor->make($routes);
+//return $processor->run($router, $_SERVER['REQUEST_URI']);

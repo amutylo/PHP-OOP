@@ -40,6 +40,7 @@ class Route
    */
   public function setPattern(string $pattern): Route {
     $this->pattern = $pattern;
+    return $this;
   }
 
   /**
@@ -56,6 +57,7 @@ class Route
    */
   public function setController(string $controller): Route {
     $this->controller = $controller;
+    return $this;
   }
 
   /**
@@ -85,8 +87,9 @@ class Route
   /**
    * @param string $action
    */
-  public function setAction(string $action): void {
+  public function setAction(string $action):Route {
     $this->action = $action;
+    return $this;
   }
   
 }

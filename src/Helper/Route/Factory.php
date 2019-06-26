@@ -2,23 +2,49 @@
 
 namespace App\Helper\Route;
 
+use App\Helper\Route\Validation\Validation;
+
 class Factory
 {
 
+  
+
+  /**
+   * @var 
+   */
+  private $routes;
+
+
+  /**
+   * @param array $routes
+   *
+   * @return array
+   */
+  public function makeRoutes(array $routes): array
+  {
+    foreach ($routes as $routeData) {
+      $this->routes[] = $this->addRoute($routeData);
+    }
+    return $this->routes;
+  }
+  
+  
   /**
    * @param array $options
    *
    * @return Route
    */
-  public function make(array $options):Route {
+  public function addRoute(array $options):?Route
+  {
 
     $route = new Route();
-    $route->setAction($options['action'])
-      ->setController($options['controller'])
-      ->setMethod($options['method'])
+
+    $route->setController($options['controller'])
+      ->setAction($options['action'])
+      ->setMethods($options['method'])
       ->setPattern($options['pattern'])
     ;
-
+    
     return $route;
   }
 }
