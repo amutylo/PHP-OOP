@@ -1,9 +1,7 @@
 <?php
 
+namespace App\Helper\HTTP\Validation;
 
-namespace App\Helper\Route\Validation;
-
-use App\Helper\Route\Validation\InterfaceValidator;
 use App\Helper\Route\Route;
 
 class Validation
@@ -22,13 +20,13 @@ class Validation
       $this->validators[get_class($validator)] = $validator;
     }
   }
-  
+
 
   /**
-   * @param \App\Helper\Route\InterfaceValidator $interfaceValidation
+   * @param InterfaceValidator $interfaceValidator
    */
   public function addValidator(InterfaceValidator $interfaceValidator) {
-    return $this->setValidators($interfaceValidator);
+    return $this->setValidators([$interfaceValidator]);
   }
 
   /**

@@ -1,9 +1,9 @@
 <?php
 
-namespace Helper\Route\Validation;
+namespace App\Helper\HTTP\Validation;
 
 use App\Helper\Route\Route;
-use App\Helper\Route\Validation\Type\PatternValidator;
+use App\Helper\HTTP\Validation\Type\PatternValidator;
 
 class PatternValidatorTest extends \Codeception\Test\Unit {
 

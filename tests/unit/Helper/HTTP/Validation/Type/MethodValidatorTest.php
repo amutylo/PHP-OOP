@@ -1,9 +1,11 @@
 <?php
 
 
-namespace Helper\Route\Validation;
+namespace App\Helper\HTTP\Validation;
 
-use App\Helper\Route\Validation\Type\MethodValidator;
+use App\Controller\Type;
+use App\Helper\HTTP\Validation\Type\MethodValidator;
+use App\Helper\Route\Route;
 
 class MethodValidatorTest extends \Codeception\Test\Unit {
 
@@ -27,7 +29,7 @@ class MethodValidatorTest extends \Codeception\Test\Unit {
    */
   public function testIsUpperCaseGet() {
     $route = new Route();
-    $route->setController(Home::class)
+    $route->setController(Type\Home::class)
       ->setMethods(['GET'])
     ;
     $validator = new MethodValidator();
@@ -45,7 +47,7 @@ class MethodValidatorTest extends \Codeception\Test\Unit {
    */
   public function testIsLowerCaseGet() {
     $route = new Route();
-    $route->setController(Home::class)
+    $route->setController(Type\Home::class)
       ->setMethods(['get'])
     ;
     $validator = new MethodValidator();
@@ -63,7 +65,7 @@ class MethodValidatorTest extends \Codeception\Test\Unit {
    */
   public function testIsInvalid() {
     $route = new Route();
-    $route->setController(Home::class)
+    $route->setController(Type\Home::class)
       ->setMethods(['this-should-not-work'])
     ;
     $validator = new MethodValidator();

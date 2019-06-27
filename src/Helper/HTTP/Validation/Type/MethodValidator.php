@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Helper\Route\Validation\Type;
+namespace App\Helper\HTTP\Validation\Type;
 
-use  App\Helper\Route\Validation\InterfaceValidator;
-use App\Helper\Route\Validation\AbstractType;
+use App\Helper\HTTP\Validation\InterfaceValidator;
+use App\Helper\HTTP\Validation\AbstractType;
+use App\Helper\Route\Route;
 
 class MethodValidator extends AbstractType implements InterfaceValidator
 {
@@ -16,7 +17,7 @@ class MethodValidator extends AbstractType implements InterfaceValidator
   public function isValid(): bool
   {
     $isValid = FALSE; 
-    $value = $this->route->getMethod();
+    $value = $this->route->getMethods();
     if (is_array($value)) {
       $this->isValueCorrect($value);
     }

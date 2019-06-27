@@ -70,7 +70,7 @@ class Route
   /**
    * @param string $method
    *
-   * @return \Helper\Route\Route
+   * @return Route
    */
   public function setMethods(array $method): Route {
     $this->methods = array_map('strtoupper', $method);

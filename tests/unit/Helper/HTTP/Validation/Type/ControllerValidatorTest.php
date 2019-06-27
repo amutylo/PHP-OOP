@@ -1,10 +1,10 @@
 <?php
 
 
-namespace Helper\Route\Validation;
+namespace App\Helper\HTTP\Validation;
 
 use App\Helper\Route\Route;
-use App\Helper\Route\Validation\Type\ControllerValidator;
+use App\Helper\HTTP\Validation\Type\ControllerValidator;
 use App\Controller\Type\Home;
 
 class ControllerValidatorTest extends \Codeception\Test\Unit {

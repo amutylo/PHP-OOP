@@ -1,6 +1,8 @@
 <?php
 
-namespace  App\Helper\Route\Validation;
+namespace App\Helper\HTTP\Validation;
+
+use App\Helper\Route\Route;
 
 interface InterfaceValidator
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Helper\Route\Validation;
+namespace App\Helper\HTTP\Validation;
 
 use App\Helper\Route\Route;
 
@@ -14,7 +14,7 @@ abstract class AbstractType
 
 
   /**
-   * @param \App\Helper\Route\Route $route
+   * @param Route $route
    */
   public function setRoute(Route $route)
   {

@@ -1,11 +1,11 @@
 <?php
 
 
-namespace Helper\Route\Validation;
+namespace App\Helper\HTTP\Validation;
 
-use App\Controller\Type\Home;
+use App\Controller\Type;
 use App\Helper\Route\Route;
-use App\Helper\Route\Validation\Type\ActionValidator;
+use App\Helper\HTTP\Validation\Type\ActionValidator;
 
 class ActionValidatorTest extends \Codeception\Test\Unit {
 
@@ -30,7 +30,7 @@ class ActionValidatorTest extends \Codeception\Test\Unit {
   public function testDoesActionExist() {
 
     $validator = new ActionValidator();
-    $this->assertTrue($validator->doesExist(Home::class, 'index'));
+    $this->assertTrue($validator->doesExist(Type\Home::class, 'index'));
   }
 
   /**
@@ -41,7 +41,7 @@ class ActionValidatorTest extends \Codeception\Test\Unit {
    */
   public function testDoesActionNotExist() {
     $validator = new ActionValidator();
-    $this->assertTrue($validator->doesExist(Home::class, 'NOT_FOUND'));
+    $this->assertTrue($validator->doesExist(Type\Home::class, 'NOT_FOUND'));
   }
 
   /**
@@ -52,7 +52,7 @@ class ActionValidatorTest extends \Codeception\Test\Unit {
    */
   public function testIsInvalid() {
     $route = new Route();
-    $route->setController(Home::class);
+    $route->setController(Type\Home::class);
     $route->setAction('NOT_FOUND');
     $validator = new ActionValidator();
     $validator->setRoute($route);
@@ -67,7 +67,7 @@ class ActionValidatorTest extends \Codeception\Test\Unit {
    */
   public function testIsValid() {
     $route = new Route();
-    $route->setController(Home::class);
+    $route->setController(Type\Home::class);
     $route->setAction('index');
     $validator = new ActionValidator();
     $validator->setRoute($route);

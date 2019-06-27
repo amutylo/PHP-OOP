@@ -1,12 +1,12 @@
 <?php
 
 
-namespace App\Helper\Route\Validation\Type;
+namespace App\Helper\HTTP\Validation\Type;
 
 use ReflectionClass;
 use ReflectionException;
-use App\Helper\Route\Validation\InterfaceValidator;
-use App\Helper\Route\Validation\AbstractType;
+use App\Helper\HTTP\Validation\InterfaceValidator;
+use App\Helper\HTTP\Validation\AbstractType;
 
 class ControllerValidator extends AbstractType implements InterfaceValidator {
 
@@ -16,7 +16,6 @@ class ControllerValidator extends AbstractType implements InterfaceValidator {
    * @return bool
    */
   public function isValid(): bool {
-    // TODO: Implement isValid() method.
     $isValid = false;
     $className = $this->route->getController();
     if (false === empty($className)) {
