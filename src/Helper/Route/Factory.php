@@ -41,7 +41,7 @@ class Factory
 
     $route->setController($options['controller'])
       ->setAction($options['action'])
-      ->setMethods($options['method'])
+      ->setMethods([$options['method']])
       ->setPattern($options['pattern'])
     ;
     

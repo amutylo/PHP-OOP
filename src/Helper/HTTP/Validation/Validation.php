@@ -48,7 +48,7 @@ class Validation
     $isValid = false;
     foreach ($this->validators as $validator) {
       if ($validator instanceof InterfaceValidator) {
-        $validator->setRoute();
+        $validator->setRoute($route);
         $isValid = $validator->isValid();
         if (false === $isValid) {
           break;
