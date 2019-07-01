@@ -27,8 +27,10 @@ class Validator
   {
     $isValid = false;
     foreach ($routes as $route) {
+
       $isValid = $validation->validate($route);
       if (false === $isValid) {
+
         throw new Exception('Validator failed ' . get_class($route));
         break;
       }

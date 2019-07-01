@@ -19,7 +19,7 @@ class MethodValidator extends AbstractType implements InterfaceValidator
     $isValid = FALSE; 
     $value = $this->route->getMethods();
     if (is_array($value)) {
-      $this->isValueCorrect($value);
+      $isValid = $this->isValueCorrect($value);
     }
     return $isValid;
   }

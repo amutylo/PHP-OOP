@@ -32,7 +32,7 @@ class ActionValidator extends AbstractType implements InterfaceValidator {
   public function doesExist(string $className, string $actionName): bool {
     $isValid = true;
     try {
-      $r = new ReflectionMethod($className, $actionName);
+      new ReflectionMethod($className, $actionName);
     } catch (ReflectionException $e) {
       $isValid = false;
     }

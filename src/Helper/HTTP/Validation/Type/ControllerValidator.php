@@ -19,7 +19,7 @@ class ControllerValidator extends AbstractType implements InterfaceValidator {
     $isValid = false;
     $className = $this->route->getController();
     if (false === empty($className)) {
-      $this->doesExist($className);
+      $isValid = $this->doesExist($className);
     }
     return $isValid;
   }
