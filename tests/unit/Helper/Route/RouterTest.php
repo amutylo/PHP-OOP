@@ -53,8 +53,8 @@ class RouterTest extends \Codeception\Test\Unit
   public function testAddRoute()
   {
     $route = new Route();
-    $route->setPatter('/')
-      ->setMethods('GET')
+    $route->setPattern('/')
+      ->setMethods(['GET'])
       ->setController(Home::class)
       ->setAction('index')
     ;
@@ -73,8 +73,8 @@ class RouterTest extends \Codeception\Test\Unit
   public function testAddDuplicateRoute()
   {
     $route = new Route();
-    $route->setPatter('/')
-      ->setMethods('GET')
+    $route->setPattern('/')
+      ->setMethods(['GET'])
       ->setController(Home::class)
       ->setAction('index')
     ;

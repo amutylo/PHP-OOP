@@ -30,7 +30,7 @@ class RouteTest extends \Codeception\Test\Unit
       $this->assertSame('', $route->getController());
       $this->assertSame('', $route->getAction());
       $this->assertSame('', $route->getPattern());
-      $this->assertSame([], $route->getMethod());
+      $this->assertSame([], $route->getMethods());
     }
 
    /**
@@ -46,7 +46,7 @@ class RouteTest extends \Codeception\Test\Unit
         ->setAction('index')
       ;
       $this->assertSame(Home::class, $route->getController());
-      $this->assertSame(['GET'], $route->getMethod());
+      $this->assertSame(['GET'], $route->getMethods());
       $this->assertSame('/', $route->getPattern());
       $this->assertSame('index', $route->getAction());
     }
@@ -60,6 +60,6 @@ class RouteTest extends \Codeception\Test\Unit
     $route = new Route();
     $route->setMethods(['GET']);
     
-    $this->assertSame(['GET'], $route->getMethod());
+    $this->assertSame(['GET'], $route->getMethods());
   }
 }

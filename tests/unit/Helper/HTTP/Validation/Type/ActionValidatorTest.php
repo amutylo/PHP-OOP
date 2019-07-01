@@ -41,7 +41,7 @@ class ActionValidatorTest extends \Codeception\Test\Unit {
    */
   public function testDoesActionNotExist() {
     $validator = new ActionValidator();
-    $this->assertTrue($validator->doesExist(Type\Home::class, 'NOT_FOUND'));
+    $this->assertFalse($validator->doesExist(Type\Home::class, 'NOT_FOUND'));
   }
 
   /**

@@ -5,91 +5,118 @@ namespace App\Helper\Route;
 
 class Route
 {
+    /**
+     * @var string
+     */
+    private $pattern = '';
+    /**
+     * @var string
+     */
+    private $controller = '';
+    /**
+     * @var string
+     */
+    private $action = '';
+    /**
+     * @var array
+     */
+    private $methods = [];
 
-  /**
-   * @var string
-   */
-  private $pattern = '';
+    /**
+     * @var array
+     */
+    private $parameters = [];
 
-  /**
-   * @var string
-   */
-  private $controller = '';
+    /**
+     * @return string
+     */
+    public function getPattern(): string
+    {
+        return $this->pattern;
+    }
 
-  /**
-   * @var array 
-   */
-  private $methods = [];
-  /**
-   * @var string 
-   */
-  private $action = '';
-  
+    /**
+     * @param string $pattern
+     * @return Route
+     */
+    public function setPattern(string $pattern): Route
+    {
+        $this->pattern = $pattern;
+        return $this;
+    }
 
-  /**
-   * @return string
-   */
-  public function getPattern(): string {
-    return $this->pattern;
-  }
+    /**
+     * @return string
+     */
+    public function getController(): string
+    {
+        return $this->controller;
+    }
 
-  /**
-   * @param string $pattern
-   *
-   * @return \Helper\Route\Route
-   */
-  public function setPattern(string $pattern): Route {
-    $this->pattern = $pattern;
-    return $this;
-  }
+    /**
+     * @param string $controller
+     * @return Route
+     */
+    public function setController(string $controller): Route
+    {
+        $this->controller = $controller;
+        return $this;
+    }
 
-  /**
-   * @return string
-   */
-  public function getController() {
-    return $this->controller;
-  }
+    /**
+     * @return array
+     */
+    public function getMethods(): array
+    {
+        return $this->methods;
+    }
 
-  /**
-   * @param string $controller
-   *
-   * @return \Helper\Route\Route
-   */
-  public function setController(string $controller): Route {
-    $this->controller = $controller;
-    return $this;
-  }
+    /**
+     * @param array $methods
+     * @return Route
+     */
+    public function setMethods(array $methods): Route
+    {
+        $this->methods = array_map('strtoupper', $methods);
 
-  /**
-   * @return string
-   */
-  public function getMethods(): array {
-    return $this->methods;
-  }
+        return $this;
+    }
 
-  /**
-   * @param string $method
-   *
-   * @return Route
-   */
-  public function setMethods(array $method): Route {
-    $this->methods = array_map('strtoupper', $method);
-    return $this;
-  }
+    /**
+     * @return string
+     */
+    public function getAction(): string
+    {
+        return $this->action;
+    }
 
-  /**
-   * @return string
-   */
-  public function getAction(): string {
-    return $this->action;
-  }
+    /**
+     * @param string $action
+     * @return Route
+     */
+    public function setAction(string $action): Route
+    {
+        $this->action = $action;
+        return $this;
+    }
 
-  /**
-   * @param string $action
-   */
-  public function setAction(string $action):Route {
-    $this->action = $action;
-    return $this;
-  }
-  
+    /**
+     * @return array
+     */
+    public function getParameters(): array
+    {
+        return $this->parameters;
+    }
+
+    /**
+     * @param array $parameters
+     * @return Route
+     */
+    public function setParameters(array $parameters): Route
+    {
+        $this->parameters = $parameters;
+        return $this;
+    }
+
+
 }

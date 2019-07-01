@@ -71,7 +71,7 @@ class MethodValidatorTest extends \Codeception\Test\Unit {
     $validator = new MethodValidator();
     $validator->setRoute($route);
 
-    $this->assertTrue($validator->isValid());
+    $this->assertFalse($validator->isValid());
 
   }
   

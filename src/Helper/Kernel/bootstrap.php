@@ -10,7 +10,8 @@ $validation = new Validation();
 $validation->setValidators([
   new Type\PatternValidator(),
   new Type\ControllerValidator(),
-  new Type\ActionValidator()
+  new Type\ActionValidator(),
+  new Type\MethodValidator()
 ]);
 
 // make Routes
