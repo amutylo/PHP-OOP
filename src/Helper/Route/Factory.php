@@ -2,12 +2,10 @@
 
 namespace App\Helper\Route;
 
-use App\Helper\Route\Validation\Validation;
+use App\Helper\Route\Route;
 
 class Factory
 {
-
-  
 
   /**
    * @var 

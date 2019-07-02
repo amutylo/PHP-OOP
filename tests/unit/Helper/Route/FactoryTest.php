@@ -34,7 +34,6 @@ class FactoryTest extends \Codeception\Test\Unit
             'method' => ['GET'],
             'action' => 'index'
         ]);
-
         $this->assertInstanceOf(Route::class, $route);
     }
 
