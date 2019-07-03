@@ -3,8 +3,8 @@
 namespace Helper\Route;
 
 use App\Controller\Type;
-use App\Helper\Route\Factory;
-use App\Helper\Route\Route;
+use App\Helper\HTTP\Route\Factory;
+use App\Helper\HTTP\Route\Route;
 
 class FactoryTest extends \Codeception\Test\Unit
 {

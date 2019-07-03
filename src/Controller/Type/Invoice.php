@@ -14,4 +14,20 @@ class Invoice extends AbstractController
       'params' => []
     ];
   }
+
+  public function edit()
+  {
+    return [
+      'view' => 'views/invoice.php',
+      'params' => []
+    ];
+  }
+
+  public function dashboard()
+  {
+    return [
+      'view' => 'views/invoice.php',
+      'params' => []
+    ];
+  }
 }

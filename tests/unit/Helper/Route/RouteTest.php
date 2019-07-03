@@ -2,7 +2,7 @@
 
 namespace Helper\Route;
 
-use App\Helper\Route\Route;
+use App\Helper\HTTP\Route\Route;
 
 class RouteTest extends \Codeception\Test\Unit
 {

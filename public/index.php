@@ -5,4 +5,5 @@ require_once BASE_PATH . 'vendor/autoload.php';
 $routes = require_once KERNEL_PATH . 'bootstrap.php';
 
 $response = Kernel::boot($routes);
+require_once PUBLIC_PATH . $response['view'];
 
