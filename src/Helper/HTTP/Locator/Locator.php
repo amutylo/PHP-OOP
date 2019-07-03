@@ -38,12 +38,11 @@ class Locator
      return self::DELIMITER . '^' . $route->getPattern() . '$' . self::DELIMITER;
   }
 
-  public function routeMatch(Route $routeToCheck, string $queryString): Route
+  public function routeMatch(Route $routeToCheck, string $queryString): ?Route
   {
     $foundRoute = null;
-    $pattern = self::createPattern($routeToCheck);
 
-    $check = preg_match($pattern, $queryString, $matches);
+    $check = preg_match(self::createPattern($routeToCheck), $queryString, $matches);
     if ($check) {
       $foundRoute = $routeToCheck;
     }

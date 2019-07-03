@@ -13,10 +13,10 @@ class HomePageCest
      */
     public function defaultResponseTest(AcceptanceTester $I)
     {
-        $I->wantTo('Test the response code for the homepage');
-        $I->amOnPage('/');
-        $I->seeResponseCodeIs(200);
-        $I->canSee('Hello from the homepage');
+      $I->wantTo('Test the response code for the homepage');
+      $I->amOnPage('/');
+      $I->seeResponseCodeIs(200);
+      $I->canSee('Hello from the homepage');
 
     }
 }

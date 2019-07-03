@@ -6,34 +6,33 @@ class InvoicePageCest
     {
     }
 
-    /**
-     * @param AcceptanceTester $I
-     *
-     * @group invoice
-     */
-    public function invoiceDashboardTest(AcceptanceTester $I)
-    {
-        $I->wantTo('Test the response code for the invoice dashboard page');
-        $I->amOnPage('/invoice');
-        $I->canSee('This is the invoice dashboard');
-        $I->seeResponseCodeIs(200);
-    }
-
-    /**
-     * @param AcceptanceTester $I
-     *
-     * @group invoice
-     * @group invoice-get-by-id
-     */
+   /**
+   * @param \AcceptanceTester $I
+   *
+   * @group invoice
+   */
     public function invoiceTest(AcceptanceTester $I)
     {
-        $I->wantTo('Test the response code for the invoice');
-        $I->amOnPage('/invoice/123');
-        $I->canSee('This is the invoice page for invoice 123    ');
-        $I->seeResponseCodeIs(200);
+      $I->wantTo('Test the response code for the invoice page');
+      $I->amOnPage('/invoice');
+      $I->canSee('This is an invoice');
+      $I->seeResponseCodeIs(200);
     }
 
     /**
+     * @param \AcceptanceTester $I
+     *
+     * @group invoice
+     */
+    public function invoiceListTest(AcceptanceTester $I)
+    {
+      $I->wantTo('Test the response code for the invoice list page');
+      $I->amOnPage('/invoice/123');
+      $I->canSee('This is an invoice');
+      $I->seeResponseCodeIs(200);
+    }
+
+  /**
      * @param AcceptanceTester $I
      *
      * @group invoice

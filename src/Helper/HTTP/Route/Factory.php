@@ -35,14 +35,11 @@ class Factory
   {
 
     $route = new Route();
-
-    $route->setController($options['controller'])
-      ->setAction($options['action'])
-      ->setMethods($options['method'])
+    $route->setAction($options['action'])
+      ->setController($options['controller'])
       ->setMethods($options['method'])
       ->setPattern($options['pattern'])
     ;
-    
     return $route;
   }
 }
