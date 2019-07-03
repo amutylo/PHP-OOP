@@ -1,4 +1,5 @@
 DirectoryIndex index.php
+ErrorDocument 404 /var/www/html/public/404.html
 
 # Enable rewrite engine
 RewriteEngine on
@@ -6,7 +7,7 @@ RewriteEngine on
 # Set the base
 RewriteBase /
 
-# Deliver files and folders if exist
+# Deliver files and folders if they exist
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 

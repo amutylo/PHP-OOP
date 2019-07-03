@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Helper\Route;
+namespace App\Helper\HTTP\Route;
 
-use App\Helper\Route\Route;
 
 class Factory
 {
@@ -39,7 +38,8 @@ class Factory
 
     $route->setController($options['controller'])
       ->setAction($options['action'])
-      ->setMethods([$options['method']])
+      ->setMethods($options['method'])
+      ->setMethods($options['method'])
       ->setPattern($options['pattern'])
     ;
     

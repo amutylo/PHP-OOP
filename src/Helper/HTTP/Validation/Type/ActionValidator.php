@@ -1,42 +1,45 @@
 <?php
-
-
 namespace App\Helper\HTTP\Validation\Type;
 
-use  App\Helper\HTTP\Validation\InterfaceValidator;
 use App\Helper\HTTP\Validation\AbstractType;
+use App\Helper\HTTP\Validation\InterfaceValidator;
 use ReflectionMethod;
 use ReflectionException;
 
-class ActionValidator extends AbstractType implements InterfaceValidator {
+class ActionValidator extends AbstractType implements InterfaceValidator
+{
+    /**
+     * @return bool
+     */
+    public function isValid(): bool
+    {
+        $className = $this->route->getController();
+        $actionName = $this->route->getAction();
 
-  /**
-   * @param mixed $value
-   *
-   * @return bool
-   */
-  public function isValid(): bool {
-    $className = $this->route->getController();
-    $actionName = $this->route->getAction();
-    $isValid = false;
-    if (false === empty($className)
-      && false === empty($actionName)) {
-      $isValid = $this->doesExist($className, $actionName);
-    }
-    return $isValid;
-  }
+        $isValid = false;
+        if(false === empty($actionName) && false === empty($className)) {
+            $isValid = $this->doesExist($className, $actionName);
+        }
 
-  /**
-   * @return bool
-   */
-  public function doesExist(string $className, string $actionName): bool {
-    $isValid = true;
-    try {
-      new ReflectionMethod($className, $actionName);
-    } catch (ReflectionException $e) {
-      $isValid = false;
+        return $isValid;
     }
-    return $isValid;
-  }
+
+    /**
+     * @param string $className
+     * @param string $actionName
+     *
+     * @return bool
+     */
+    public function doesExist(string $className, string $actionName):bool
+    {
+        $isValid = true;
+        try {
+            new ReflectionMethod($className, $actionName);
+        } catch (ReflectionException $exception){
+            $isValid = false;
+        }
+
+        return $isValid;
+    }
+
 }
-

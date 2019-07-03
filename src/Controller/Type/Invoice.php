@@ -6,7 +6,7 @@ use App\Controller\AbstractController;
 
 class Invoice extends AbstractController
 {
-
+  
   public function index()
   {
     return [

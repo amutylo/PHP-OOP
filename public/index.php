@@ -1,13 +1,8 @@
 <?php
-//use Repository\Type\Invoice;
+use App\Helper\Kernel\Kernel;
+require_once '../app/config/config.php';
+require_once BASE_PATH . 'vendor/autoload.php';
+$routes = require_once KERNEL_PATH . 'bootstrap.php';
 
-$viewData = require_once '../src/Helper/Kernel/Kernel.php';
-
-//$repo = new Invoice();
-//$repo->findOne(4);
-
-// Do something that gets the view from the controller
-
-var_dump($viewData);
-require_once $viewData['view'];
+$response = Kernel::boot($routes);
 

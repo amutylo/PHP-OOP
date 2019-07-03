@@ -1,78 +1,82 @@
 <?php
+namespace Helper\HTTP\Validation;
 
-
-namespace App\Helper\HTTP\Validation;
-
-use App\Controller\Type;
+use App\Controller\Type\Home;
+use App\Helper\HTTP\Route\Route;
+use App\Helper\HTTP\Validation\Type\ControllerValidator;
 use App\Helper\HTTP\Validation\Type\MethodValidator;
-use App\Helper\Route\Route;
+use App\Helper\HTTP\Validation\Validation;
 
-class MethodValidatorTest extends \Codeception\Test\Unit {
+class MethodValidatorTest extends \Codeception\Test\Unit
+{
+    /**
+     * @var \UnitTester
+     */
+    protected $tester;
+    
+    protected function _before()
+    {
+    }
 
-  /**
-   * @var \UnitTester
-   */
-  protected $tester;
+    protected function _after()
+    {
+    }
 
-  protected function _before() {
-  }
+    /**
+     * @group validation
+     * @group validation-type
+     * @group validation-type-method
+     * @group validation-type-method-is-upper-case
+     */
+    public function testIsUpperCase()
+    {
+        $route = new Route();
+        $route->setController(Home::class)
+            ->setMethods(['GET'])
+        ;
 
-  protected function _after() {
-  }
+        $validator = new MethodValidator();
+        $validator->setRoute($route);
 
+        $this->assertTrue($validator->isValid());
+    }
 
-  /**
-   * @group validation
-   * @group validation-type
-   * @group validation-type-method
-   * @group validation-type-method-is-upper-case
-   */
-  public function testIsUpperCaseGet() {
-    $route = new Route();
-    $route->setController(Type\Home::class)
-      ->setMethods(['GET'])
-    ;
-    $validator = new MethodValidator();
-    $validator->setRoute($route);
+    /**
+     * @group validation
+     * @group validation-type
+     * @group validation-type-method
+     * @group validation-type-method-is-lowecase
+     */
+    public function testIsLowerCase()
+    {
+        $route = new Route();
+        $route->setController(Home::class)
+            ->setMethods(['get'])
+        ;
 
-    $this->assertTrue($validator->isValid());
+        $validator = new MethodValidator();
+        $validator->setRoute($route);
 
-  }
+        $this->assertTrue($validator->isValid());
+    }
 
-  /**
-   * @group validation
-   * @group validation-type
-   * @group validation-type-method
-   * @group validation-type-method-is-lower-case
-   */
-  public function testIsLowerCaseGet() {
-    $route = new Route();
-    $route->setController(Type\Home::class)
-      ->setMethods(['get'])
-    ;
-    $validator = new MethodValidator();
-    $validator->setRoute($route);
+    /**
+     * @group validation
+     * @group validation-type
+     * @group validation-type-method
+     * @group validation-type-method-is-invalid
+     */
+    public function testIsInvalid()
+    {
+        $route = new Route();
+        $route->setController(Home::class)
+            ->setMethods(['this-should-not-work'])
+        ;
 
-    $this->assertTrue($validator->isValid());
+        $validator = new MethodValidator();
+        $validator->setRoute($route);
 
-  }
+        $this->assertFalse($validator->isValid());
+    }
 
-  /**
-   * @group validation
-   * @group validation-type
-   * @group validation-type-method
-   * @group validation-type-method-is-invalid
-   */
-  public function testIsInvalid() {
-    $route = new Route();
-    $route->setController(Type\Home::class)
-      ->setMethods(['this-should-not-work'])
-    ;
-    $validator = new MethodValidator();
-    $validator->setRoute($route);
-
-    $this->assertFalse($validator->isValid());
-
-  }
-  
 }

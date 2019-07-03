@@ -1,7 +1,5 @@
 <?php
-
-namespace App\Helper\Route;
-
+namespace App\Helper\HTTP\Route;
 
 class Route
 {

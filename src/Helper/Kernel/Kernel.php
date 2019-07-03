@@ -1,14 +1,25 @@
 <?php
+namespace App\Helper\Kernel;
 
-use App\Helper\Route\Processor;
+use App\Helper\HTTP\Locator\Locator;
+use App\Helper\HTTP\Route\Route;
+use Exception;
 
-require_once 'config.php';
-require_once BASE_PATH . 'vendor/autoload.php';
-require_once 'bootstrap.php';
+class Kernel
+{
+  public static function boot(array $routes)
+  {
+    $request = new Request($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
+    $locator = new Locator($request, $routes);
+    $route = $locator->locate();
+    if ($route instanceof Route) {
+      throw new Exception('Cannot find page', 404);
+    }
 
+    $controllerName = $route->getController();
+    $controller = new $controllerName();
+    
+    return $controller->{$route->getAction()}();
+  }
+}
 
-
-//$processor = new Processor();
-//
-//$router = $processor->make($routes);
-//return $processor->run($router, $_SERVER['REQUEST_URI']);

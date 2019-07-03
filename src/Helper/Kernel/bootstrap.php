@@ -1,8 +1,9 @@
 <?php
-use App\Helper\Route\Factory;
+use App\Helper\HTTP\Route\Factory;
 use App\Helper\HTTP\Validation\Validation;
 use App\Helper\HTTP\Validation\Type;
-use App\Helper\Route\Validator;
+use App\Helper\HTTP\Route\Validator;
+
 $routeData = require_once BASE_PATH . 'app/config/routing.php' ;
 
 // make Route validation.
@@ -17,4 +18,8 @@ $validation->setValidators([
 // make Routes
 $routesFactory = new Factory();
 $routes = $routesFactory->makeRoutes($routeData);
-Validator::validate($routes, $validation);
+$isValid = Validator::validate($routes, $validation);
+
+return $routes;
+
+

@@ -1,72 +1,79 @@
 <?php
+namespace Helper\HTTP\Validation;
 
-
-namespace App\Helper\HTTP\Validation;
-
-use App\Helper\Route\Route;
-use App\Helper\HTTP\Validation\Type\ControllerValidator;
 use App\Controller\Type\Home;
+use App\Helper\HTTP\Route\Route;
+use App\Helper\HTTP\Validation\Type\ControllerValidator;
+use App\Helper\HTTP\Validation\Type\MethodValidator;
+use App\Helper\HTTP\Validation\Validation;
 
-class ControllerValidatorTest extends \Codeception\Test\Unit {
+class ControllerValidatorTest extends \Codeception\Test\Unit
+{
+    /**
+     * @var \UnitTester
+     */
+    protected $tester;
+    
+    protected function _before()
+    {
+    }
 
-  /**
-   * @var \UnitTester
-   */
-  protected $tester;
+    protected function _after()
+    {
+    }
 
-  protected function _before() {
-  }
+    /**
+     * @group validation
+     * @group validation-type
+     * @group validation-type-controller
+     * @group validation-type-controller-does-exist
+     */
+    public function testDoesControllerExist()
+    {
+        $validator = new ControllerValidator();
+        $this->assertTrue($validator->doesExist(Home::class));
+    }
 
-  protected function _after() {
-  }
+    /**
+     * @group validation
+     * @group validation-type
+     * @group validation-type-controller
+     * @group validation-type-controller-does-not-exist
+     */
+    public function testDoesNotControllerExist()
+    {
+        $validator = new ControllerValidator();
+        $this->assertFalse($validator->doesExist('NOT_FOUND'));
+    }
 
+    /**
+     * @group validation
+     * @group validation-type
+     * @group validation-type-controller
+     * @group validation-type-controller-empty
+     */
+    public function testDoesNotControllerEmpty()
+    {
+        $route = new Route();
 
-  /**
-   * @group validation
-   * @group validation-type
-   * @group validation-type-controller
-   * @group validation-type-controller-does-exist
-   */
-  public function testDoesControllerExist() {
-    $validator = new ControllerValidator();
-    $this->assertTrue($validator->doesExist(Home::class));
-  }
+        $validator = new ControllerValidator();
+        $validator->setRoute($route);
+        $this->assertFalse($validator->isValid());
+    }
 
-  /**
-   * @group validation
-   * @group validation-type
-   * @group validation-type-controller
-   * @group validation-type-controller-does-not-exist
-   */
-  public function testDoesControllerNotExist() {
-    $validator = new ControllerValidator();
-    $this->assertFalse($validator->doesExist('NOT_FOUND'));
-  }
+    /**
+     * @group validation
+     * @group validation-type
+     * @group validation-type-controller
+     * @group validation-type-controller-set
+     */
+    public function testDoesNotControllerSet()
+    {
+        $route = new Route();
+        $route->setController(Home::class);
 
-  /**
-   * @group validation
-   * @group validation-type
-   * @group validation-type-controller
-   * @group validation-type-controller-empty
-   */
-  public function testDoesNotControllerEmpty() {
-    $route = new Route();
-    $validator = new ControllerValidator();
-    $validator->setRoute($route);
-    $this->assertFalse($validator->isValid());
-  }
-
-  /**
-   * @group validation
-   * @group validation-type
-   * @group validation-type-controller
-   * @group validation-type-controller-set
-   */
-  public function testDoesNotControllerSet() {
-    $route = new Route();
-    $route->setController(Home::class);
-    $validator = new ControllerValidator();
-    $validator->setRoute($route);
-    $this->assertTrue($validator->isValid());
-  }
+        $validator = new ControllerValidator();
+        $validator->setRoute($route);
+        $this->assertTrue($validator->isValid());
+    }
 }

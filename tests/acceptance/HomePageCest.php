@@ -6,16 +6,17 @@ class HomePageCest
     {
     }
 
-  /**
-   * @param \AcceptanceTester $I
-   *
-   * @group homepage
-   */
+    /**
+     * @param AcceptanceTester $I
+     *
+     * @group homepage
+     */
     public function defaultResponseTest(AcceptanceTester $I)
     {
-      $I->wantTo('Test the response code for the homepage');
-      $I->amOnPage('/');
-      $I->seeResponseCodeIs(200);
-      $I->canSee('Hello from the homepage');
+        $I->wantTo('Test the response code for the homepage');
+        $I->amOnPage('/');
+        $I->seeResponseCodeIs(200);
+        $I->canSee('Hello from the homepage');
+
     }
 }

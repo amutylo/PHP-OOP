@@ -1,49 +1,53 @@
 <?php
+namespace Helper\HTTP\Validation;
 
-namespace App\Helper\HTTP\Validation;
-
-use App\Helper\Route\Route;
+use App\Helper\HTTP\Route\Route;
 use App\Helper\HTTP\Validation\Type\PatternValidator;
 
-class PatternValidatorTest extends \Codeception\Test\Unit {
+class PatternValidatorTest extends \Codeception\Test\Unit
+{
+    /**
+     * @var \UnitTester
+     */
+    protected $tester;
+    
+    protected function _before()
+    {
+    }
 
-  /**
-   * @var \UnitTester
-   */
-  protected $tester;
+    protected function _after()
+    {
+    }
 
-  protected function _before() {
-  }
+    /**
+     * @group validation
+     * @group validation-type
+     * @group validation-type-pattern
+     * @group validation-type-pattern-is-in-valid
+     */
+    public function testIsInValid()
+    {
+        $route = new Route();
+        $validator = new PatternValidator();
+        $validator->setRoute($route);
 
-  protected function _after() {
-  }
+        $this->assertFalse($validator->isValid());
+    }
 
+    /**
+     * @group validation
+     * @group validation-type
+     * @group validation-type-pattern
+     * @group validation-type-pattern-is-valid
+     */
+    public function testIsValid()
+    {
+        $route = new Route();
+        $route->setPattern('/');
+        $validator = new PatternValidator();
+        $validator->setRoute($route);
 
-   /**
-   * @group validation
-   * @group validation-type
-   * @group validation-type-pattern
-   * @group validation-type-pattern-is-invalid
-   */
-  public function testIsInvalid() {
-    $route = new Route();
-    $validator = new PatternValidator();
-    $validator->setRoute($route);
-    $this->assertFalse($validator->isValid());
-  }
+        $this->assertTrue($validator->isValid());
+    }
 
-  /**
-   * @group validation
-   * @group validation-type
-   * @group validation-type-pattern
-   * @group validation-type-pattern-is-valid
-   */
-  public function testIsValid() {
-    $route = new Route();
-    $route->setPattern('/');
-    $validator = new PatternValidator();
-    $validator->setRoute($route);
-    $this->assertTrue($validator->isValid());
-  }
-  
 }
