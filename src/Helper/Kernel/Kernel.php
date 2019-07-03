@@ -22,7 +22,7 @@ class Kernel
     $controllerName = $route->getController();
     $controller = new $controllerName();
     
-    return $controller->{$route->getAction()}();
+    return $controller->{$route->getAction()}($request);
   }
 }
 

@@ -3,11 +3,12 @@
 namespace App\Controller\Type;
 
 use App\Controller\AbstractController;
+use App\Helper\HTTP\Request\Request;
 
 class Invoice extends AbstractController
 {
   
-  public function index()
+  public function index(Request $request)
   {
     return [
       'view' => 'views/invoice.php',
@@ -15,7 +16,7 @@ class Invoice extends AbstractController
     ];
   }
 
-  public function edit()
+  public function edit(Request $request)
   {
     return [
       'view' => 'views/invoice.php',
@@ -23,7 +24,7 @@ class Invoice extends AbstractController
     ];
   }
 
-  public function dashboard()
+  public function dashboard(Request $request)
   {
     return [
       'view' => 'views/invoice.php',
