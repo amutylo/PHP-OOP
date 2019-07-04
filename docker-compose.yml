@@ -12,7 +12,8 @@ services:
     volumes:
       - .:/var/www/html
       - ./apache/conf:/etc/apache2/sites-available
-
+      - ./apache/php/php.ini:/usr/local/etc/php/php.ini
+      
     environment:
       - APACHE_DOCUMENT_ROOT=/var/www/html/public
 

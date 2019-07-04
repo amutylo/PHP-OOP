@@ -41,6 +41,9 @@ https://docs.docker.com/machine/install-machine/
   $ docker-compose down -v
   //clean all images
   $ docker system prune -a
+
+   //go inside of the container
+  $  docker-compose exec web bash 
 ```
 
 ```
