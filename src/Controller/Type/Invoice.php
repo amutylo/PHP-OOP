@@ -11,7 +11,7 @@ class Invoice extends AbstractController
   public function index(Request $request)
   {
     return [
-      'view' => 'views/invoice.php',
+      'view' => 'views/invoice/index.php',
       'params' => []
     ];
   }
@@ -19,7 +19,7 @@ class Invoice extends AbstractController
   public function edit(Request $request)
   {
     return [
-      'view' => 'views/invoice.php',
+      'view' => 'views/invoice/edit.php',
       'params' => []
     ];
   }
@@ -27,7 +27,7 @@ class Invoice extends AbstractController
   public function dashboard(Request $request)
   {
     return [
-      'view' => 'views/invoice.php',
+      'view' => 'views/invoice/dashboard.php',
       'params' => []
     ];
   }

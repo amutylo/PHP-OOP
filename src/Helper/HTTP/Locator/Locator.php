@@ -28,7 +28,7 @@ class Locator
   public function __construct(Request $request, array $routes = [])
   {
     $this->request = $request;
-    $this->setRoutes($routes);
+    
     $this->routes = $routes;
   }
 
@@ -38,28 +38,17 @@ class Locator
      return self::DELIMITER . '^' . $route->getPattern() . '$' . self::DELIMITER;
   }
 
-  public function routeMatch(Route $routeToCheck, string $queryString): ?Route
+  public function routeMatch(Route $routeToCheck, string $queryString)
   {
     $foundRoute = null;
 
-    $check = preg_match(self::createPattern($routeToCheck), $queryString, $matches);
-    if ($check) {
-      $foundRoute = $routeToCheck;
+    preg_match(self::createPattern($routeToCheck), $queryString, $matches);
+    if (false === empty($matches)) {
+      return $matches;
     }
-
-    return $foundRoute;
+    
   }
-
-  /**
-   * @param array $routes
-   *
-   * @return $this
-   */
-  public function setRoutes(array $routes)
-  {
-    $this->routes = $routes;
-    return $this;
-  }
+  
   /**
    * @return Route|null
    */
@@ -70,8 +59,10 @@ class Locator
     $queryString = $this->request->getPath();
 
     foreach ($this->routes as $route) {
-      $foundRoute = $this->routeMatch($route, $queryString);
-      if ($foundRoute instanceof Route) {
+      $matches = $this->routeMatch($route, $queryString);
+      if (false=== empty($matches)) {
+        $this->request->setParameters($matches);
+        $foundRoute = $route;
         break;
       }
     }
