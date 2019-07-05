@@ -8,103 +8,104 @@ use App\Helper\HTTP\Route\Route;
 
 class FactoryTest extends \Codeception\Test\Unit
 {
-    /**
-     * @var \UnitTester
-     */
-    protected $tester;
-    
-    protected function _before()
-    {
-    }
+  /**
+   * @var \UnitTester
+   */
+  protected $tester;
 
-    protected function _after()
-    {
-    }
+  protected function _before()
+  {
+  }
 
-    /**
-     * @group router
-     * @group router-factory-make
-     */
-    public function testMakeRoute()
-    {
-        $factory = new Factory();
-        $route = $factory->addRoute([
-            'pattern' => '/',
-            'controller' => Type\Home::class,
-            'method' => ['GET'],
-            'action' => 'index'
-        ]);
-        $this->assertInstanceOf(Route::class, $route);
-    }
+  protected function _after()
+  {
+  }
 
-    /**
-     * @group router
-     * @group router-factory-make-multiple
-     */
-    public function testMakeMultiple()
-    {
-        $routes = [
-            [
-                'pattern' => '/',
-                'controller' => Type\Home::class,
-                'method' => ['GET'],
-                'action' => 'index'
-            ],
-            [
-                'pattern' => '/invoice/([0-9]*)',
-                'controller' => Type\Invoice::class,
-                'method' => ['GET'],
-                'action' => 'index'
-            ],
-            [
-                'pattern' => '/invoice/([0-9]*)/edit/([0-9]*)',
-                'controller' => Type\Invoice::class,
-                'method' => ['GET'],
-                'action' => 'index'
-            ],
-        ];
+  /**
+   * @group router
+   * @group router-factory-make
+   */
+  public function testMakeRoute()
+  {
+      $factory = new Factory();
+      $route = $factory->addRoute([
+          'pattern' => '/',
+          'controller' => Type\Home::class,
+          'method' => ['GET'],
+          'action' => 'index'
+      ]);
+      $this->assertInstanceOf(Route::class, $route);
+  }
 
-        $factory = new Factory();
+  /**
+   * @group router
+   * @group router-factory-make-multiple
+   */
+  public function testMakeMultiple()
+  {
+      $routes = [
+          [
+              'pattern' => '/',
+              'controller' => Type\Home::class,
+              'method' => ['GET'],
+              'action' => 'index'
+          ],
+          [
+              'pattern' => '/invoice/([0-9]*)',
+              'controller' => Type\Invoice::class,
+              'method' => ['GET'],
+              'action' => 'index'
+          ],
+          [
+              'pattern' => '/invoice/([0-9]*)/edit/([0-9]*)',
+              'controller' => Type\Invoice::class,
+              'method' => ['GET'],
+              'action' => 'index'
+          ],
+      ];
 
-        $results = [];
-        foreach($routes as $data) {
-            $results[] = $factory->addRoute($data);
-        }
+      $factory = new Factory();
 
-        $this->assertEquals(count($routes), count($results));
-    }
+      $results = [];
+      foreach($routes as $data) {
+          $results[] = $factory->addRoute($data);
+      }
 
-    /**
-     * @group router
-     * @group router-factory-make-routes
-     */
-    public function testMakeRoutes()
-    {
-        $routes = [
-            [
-                'pattern' => '/',
-                'controller' => Type\Home::class,
-                'method' => ['GET'],
-                'action' => 'index'
-            ],
-            [
-                'pattern' => '/invoice/([0-9]*)',
-                'controller' => Type\Invoice::class,
-                'method' => ['GET'],
-                'action' => 'index'
-            ],
-            [
-                'pattern' => '/invoice/([0-9]*)/edit/([0-9]*)',
-                'controller' => Type\Invoice::class,
-                'method' => ['GET'],
-                'action' => 'index'
-            ],
-        ];
+      $this->assertEquals(count($routes), count($results));
+  }
 
-        $factory = new Factory();
+  /**
+   * @group router
+   * @group router-factory-make-routes
+   */
+  public function testMakeRoutes()
+  {
+      $routes = [
+          [
+              'pattern' => '/',
+              'controller' => Type\Home::class,
+              'method' => ['GET'],
+              'action' => 'index'
+          ],
+          [
+              'pattern' => '/invoice/([0-9]*)',
+              'controller' => Type\Invoice::class,
+              'method' => ['GET'],
+              'action' => 'index'
+          ],
+          [
+              'pattern' => '/invoice/([0-9]*)/edit/([0-9]*)',
+              'controller' => Type\Invoice::class,
+              'method' => ['GET'],
+              'action' => 'index'
+          ],
+      ];
 
-        $results = $factory->makeRoutes($routes);
-        $this->assertIsArray($results);
-        $this->assertEquals(count($routes), count($results));
-    }
+      $factory = new Factory();
+
+      $results = $factory->makeRoutes($routes);
+      $this->assertIsArray($results);
+      $this->assertEquals(count($routes), count($results));
+  }
+
 }
