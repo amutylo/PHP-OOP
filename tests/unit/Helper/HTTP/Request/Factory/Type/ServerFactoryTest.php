@@ -56,7 +56,7 @@ class ServerFactoryTest extends \Codeception\Test\Unit
   public function testRequestMethodException()
   {
 
-    $this->tester->expectException(new Exception("REQUEST_METHOD not found'"), function () {
+    $this->tester->expectException(new Exception("REQUEST_METHOD not found"), function () {
       $_SERVER['REQUEST_URI'] = '/';
       $factory = new ServerFactory();
       $request = $factory::make();
