@@ -16,8 +16,13 @@ services:
       
     environment:
       - APACHE_DOCUMENT_ROOT=/var/www/html/public
+    restart: always
 
   db:
     image: mysql:5.7
     volumes:
       - mysql_data:/var/lib/mysql
+      - ./mysql:/scripts
+    environment:
+      - MYSQL_DATABASE=invoice_app
+      - MYSQL_ROOT_PASSWORD=test

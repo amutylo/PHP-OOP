@@ -176,5 +176,16 @@ class Invoice extends AbstractEntity
         return $this;
     }
 
+  /**
+   * @param $customer
+   *
+   * @return Invoice
+   */
+  public function setCustomer($customer): Invoice
+  {
+    $this->customer = $customer;
+    return $this;
+  }
+
 
 }
