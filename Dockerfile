@@ -27,4 +27,4 @@ RUN apt-get update          \
 RUN curl -sS https://getcomposer.org/installer | php -- --filename=composer --install-dir=/bin
 ENV PATH /root/.composer/vendor/bin:$PATH
 
-WORKDIR /var/www/html
+WORKDIR /var/www/html/public

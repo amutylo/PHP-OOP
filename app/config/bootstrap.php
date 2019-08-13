@@ -6,7 +6,7 @@ use App\Helper\HTTP\Route\Validator;
 
 require_once 'config.php';
 require_once BASE_PATH . 'vendor/autoload.php';
-$routeData = require_once CONFIG_PATH . 'routing.php' ;
+$routeData = require_once CONFIG_PATH . 'routing.php';
 
 // make Route validation.
 $validation = new Validation();
