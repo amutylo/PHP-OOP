@@ -2,6 +2,7 @@
 
 namespace App\Manager;
 
+use App\Hydration\StatusHydrator;
 use App\Manager\AbstractManager;
 use App\Entity\Type\Status;
 use App\Repository\Type\Status as Repository;
@@ -18,6 +19,7 @@ class StatusManager extends AbstractManager
 
   public function getRepository($className)
   {
+    $repository = '';
     return $repository;
   }
 
@@ -31,8 +33,7 @@ class StatusManager extends AbstractManager
   public function findOne(int $id): Status
   {
     $row = $this->repository->findOne($id);
-    $entity = $this->hydrator->hydrate($row);
-    return $entity;
+    return StatusHydrator::hydrate($row);
   }
 
   /**
@@ -46,6 +47,5 @@ class StatusManager extends AbstractManager
   {
 
   }
-
-  public function
+  
 }

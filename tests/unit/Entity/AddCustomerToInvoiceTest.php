@@ -1,5 +1,5 @@
 <?php
-namespace App\Entity;
+namespace Entity;
 
 use App\Entity\Type\Customer;
 use App\Entity\Type\Invoice;
