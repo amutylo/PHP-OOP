@@ -1,46 +1,38 @@
 <?php
-
 namespace App\Entity\Type;
 
-use App\Entity\AbstractEntity;
+use DateTime;
 
 interface GenericEntityInterface
 {
+    /**
+     * @return int
+     */
+    public function getId():?int;
 
-  /**
-   * @return int
-   */
-  public function getId(): ?int;
+    /**
+     * @param int $id
+     */
+    public function setId(int $id);
 
+    /**
+     * @return DateTime
+     */
+    public function getDateCreated():?DateTime;
 
-  /**
-   * @param int $id
-   * @return AbstractEntity
-   */
-  public function setId(?int $id);
+    /**
+     * @param DateTime $dateCreated
+     */
+    public function setDateCreated(DateTime $dateCreated);
 
+    /**
+     * @return DateTime
+     */
+    public function getDateUpdated():DateTime;
 
-  /**
-   * @return DateTime
-   */
-  public function getDateCreated(): DateTime;
+    /**
+     * @param DateTime $dateUpdated
+     */
+    public function setDateUpdated(DateTime $dateUpdated);
 
-
-  /**
-   * @param DateTime $dateCreated
-   * @return AbstractEntity
-   */
-  public function setDateCreated(DateTime $dateCreated);
-  
-  /**
-   * @return DateTime
-   */
-  public function getDateUpdated(): DateTime;
-
-  /**
-   * @param DateTime $dateUpdated
-   * @return AbstractEntity
-   */
-  public function setDateUpdated(DateTime $dateUpdated);
-  
 }

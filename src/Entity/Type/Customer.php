@@ -5,26 +5,20 @@ use App\Entity\AbstractEntity;
 
 class Customer extends AbstractEntity implements GenericEntityInterface
 {
-  /**
-  * @var string
-  */
-  private $name = '';
+    /**
+     * @var string
+     */
+    private $companyName = '';
 
-  /**
-  * @var string
-  */
-  private $firstName = '';
+    /**
+     * @var string
+     */
+    private $firstName = '';
 
-  /**
-  * @var string
-  */
-  private $lastName = '';
-
-  /**
-   * @var string 
-   */
-  private $companyName = '';
-
+    /**
+     * @var string
+     */
+    private $lastName = '';
 
   /**
    * @return string
@@ -42,24 +36,6 @@ class Customer extends AbstractEntity implements GenericEntityInterface
     return implode(' ', $names);
   }
 
-  
-
-  /**
-   * @return string
-   */
-  public function getName(): string {
-    return $this->name;
-  }
-
-  /**
-   * @param string $name
-   *
-   * @return \App\Entity\Type\Customer
-   */
-  public function setName(string $name): Customer
-  {
-    $this->name = $name;
-  }
 
   /**
    * @return string
