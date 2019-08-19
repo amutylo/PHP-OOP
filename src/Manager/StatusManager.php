@@ -2,6 +2,7 @@
 
 namespace App\Manager;
 
+use App\DB\Connection;
 use App\Hydration\StatusHydrator;
 use App\Manager\AbstractManager;
 use App\Entity\Type\Status;
@@ -16,6 +17,12 @@ class StatusManager extends AbstractManager
    */
   private $repo;
 
+  private $connection;
+
+  public function __construct(Connection $connection)
+  {
+    $this->connection = $connection;
+  }
 
   public function getRepository($className)
   {
@@ -47,5 +54,26 @@ class StatusManager extends AbstractManager
   {
 
   }
-  
+
+  public function save(Status $entity):Status
+  {
+    if (null === $entity->getId()) {
+      $sql = "INSERT INTO `status` (`name`, `internal_name`) VALUE (?,?);";
+      $data = [
+        $entity->getName(),
+        $entity->getInternalName()
+      ];
+    }
+    else {
+      $sql = 'UPDATE `status` SET `name` = ?, `internal_name` = ? WHERE `id` = ?;';
+      $data = [
+        $entity->getName(),
+        $entity->getInternalName(),
+        $entity->getId()
+      ];
+    }
+    $dbCon = $this->connection->open();
+    $dbCon->prepare($sql);
+    $dbCon->execute($data);
+  }
 }
