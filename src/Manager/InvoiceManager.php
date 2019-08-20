@@ -2,10 +2,11 @@
 
 namespace App\Manager;
 
+use App\DB\Connection;
 use App\Hydration\InvoiceHydrator;
 use App\Manager\AbstractManager;
 use App\Entity\Type\Invoice;
-use App\Repository\Type\Status as Repository;
+use App\Repository\Type\InvoiceRepository;
 
 class InvoiceManager extends AbstractManager
 {
@@ -14,13 +15,15 @@ class InvoiceManager extends AbstractManager
    *
    * @var App\Repository\Type\Status
    */
-  private $repo;
+  private $repository;
+
+  private $connection;
 
 
-  public function getRepository($className)
+  public function __construct(Connection $connection, InvoiceRepository $repository)
   {
-    $repository = '';
-    return $repository;
+    $this->connection = $connection;
+    $this->repository = $repository;
   }
 
   /**

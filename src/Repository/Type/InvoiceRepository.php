@@ -4,7 +4,7 @@ namespace Repository\Type;
 
 use App\Repository\AbstractRepository;
 
-class Customer extends AbstractRepository {
+class InvoiceRepository extends AbstractRepository {
 
   /**
    *

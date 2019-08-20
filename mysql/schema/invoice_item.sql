@@ -7,8 +7,7 @@ CREATE TABLE IF NOT EXISTS `invoice_item` (
     `unit_price` DECIMAL NOT NULL,
     `units` INT(11) NOT NULL,
     `total` DECIMAL NOT NULL,
-    `invoice_id` INT(11),
-    `customer_id` INT(11) NULL,
+    `invoice_id` INT(11) NOT NULL,
     `date_created` DATETIME DEFAULT CURRENT_TIMESTAMP,
     `date_updated` DATETIME ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY fk_invoice(invoice_id)

@@ -4,7 +4,14 @@ namespace Repository\Type;
 
 use App\Repository\AbstractRepository;
 
-class Status extends AbstractRepository {
+class CustomerRepository extends AbstractRepository {
+
+  /**
+   *
+   */
+  public function save() {
+    // TODO: Implement save() method.
+  }
 
   /**
    * @param \Repository\Type\int $id

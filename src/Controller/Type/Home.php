@@ -12,13 +12,6 @@ class Home extends AbstractController
 {
     public function index(Request $request)
     {
-      $status = new Status();
-      $connection = new Connection();
-      $conn = $connection->open();
-
-      $manager = new StatusManager($connection);
-      $manager->save();
-
       return View::render('views/home/index.php', [
       ]);
     }

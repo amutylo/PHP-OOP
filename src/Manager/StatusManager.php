@@ -6,29 +6,25 @@ use App\DB\Connection;
 use App\Hydration\StatusHydrator;
 use App\Manager\AbstractManager;
 use App\Entity\Type\Status;
-use App\Repository\Type\Status as Repository;
+use App\Repository\Type\StatusRepository;
 
 class StatusManager extends AbstractManager
 {
 
   /**
    *
-   * @var App\Repository\Type\Status
+   * @var App\Repository\Type\StatusRepository
    */
-  private $repo;
+  private $repository;
 
   private $connection;
 
-  public function __construct(Connection $connection)
+  public function __construct(Connection $connection, StatusRepository $repository)
   {
     $this->connection = $connection;
+    $this->repository = $repository;
   }
-
-  public function getRepository($className)
-  {
-    $repository = '';
-    return $repository;
-  }
+  
 
   /**
    * [findOne description]
@@ -37,7 +33,7 @@ class StatusManager extends AbstractManager
    *
    * @return  Status       [return description]
    */
-  public function findOne(int $id): Status
+  public function findOne(int $id):? Status
   {
     $row = $this->repository->findOne($id);
     return StatusHydrator::hydrate($row);
@@ -57,23 +53,7 @@ class StatusManager extends AbstractManager
 
   public function save(Status $entity):Status
   {
-    if (null === $entity->getId()) {
-      $sql = "INSERT INTO `status` (`name`, `internal_name`) VALUE (?,?);";
-      $data = [
-        $entity->getName(),
-        $entity->getInternalName()
-      ];
-    }
-    else {
-      $sql = 'UPDATE `status` SET `name` = ?, `internal_name` = ? WHERE `id` = ?;';
-      $data = [
-        $entity->getName(),
-        $entity->getInternalName(),
-        $entity->getId()
-      ];
-    }
-    $dbCon = $this->connection->open();
-    $dbCon->prepare($sql);
-    $dbCon->execute($data);
+    $savedEntity = $this->repository->save($entity);
+    return $savedEntity;
   }
 }
