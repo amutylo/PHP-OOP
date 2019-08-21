@@ -18,7 +18,6 @@ class CustomerManager extends AbstractManager
    */
   private $repository;
 
-  private $connection;
 
   public function __construct(CustomerRepository $repository)
   {
@@ -26,28 +25,22 @@ class CustomerManager extends AbstractManager
   }
 
   /**
-   * [findOne description]
+   * @param int $id
    *
-   * @param   int     $id  [$id description]
-   *
-   * @return  Customer       [return description]
+   * @return \App\Entity\Type\Customer
    */
-  public function findOne(int $id): Customer
+  public function findOne(int $id):? Customer
   {
-    $row = $this->repository->findOne($id);
-    return CustomerHydrator::hydrate($row);
+    $entity = $this->repository->findOne($id);
+    return $entity;
   }
 
   /**
-   * [findOneBy description]
-   *
-   * @param   array   $array  [$array description]
-   *
-   * @return  Status          [return description]
+   * @return array
    */
-  public function findOneBy(array $array): Status
+  public function findAll(): array
   {
-
+     return $this->repository->findAll();
   }
 
   public function save(Customer $entity)
