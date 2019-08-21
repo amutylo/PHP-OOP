@@ -17,40 +17,36 @@ class StatusManager extends AbstractManager
    */
   private $repository;
 
-  private $connection;
-
-  public function __construct(Connection $connection, StatusRepository $repository)
+  public function __construct( StatusRepository $repository)
   {
-    $this->connection = $connection;
     $this->repository = $repository;
   }
-  
+
 
   /**
-   * [findOne description]
+   * @param int $id
    *
-   * @param   int     $id  [$id description]
-   *
-   * @return  Status       [return description]
+   * @return \App\Entity\Type\Status|null
    */
   public function findOne(int $id):? Status
   {
-    $row = $this->repository->findOne($id);
-    return StatusHydrator::hydrate($row);
+    $entity = $this->repository->findOne($id);
+    return $entity;
   }
 
   /**
-   * [findOneBy description]
-   *
-   * @param   array   $array  [$array description]
-   *
-   * @return  Status          [return description]
+   * @return array
    */
-  public function findOneBy(array $array): Status
+  public function findAll()
   {
-
+    return $this->repository->findAll();
   }
 
+  /**
+   * @param \App\Entity\Type\Status $entity
+   *
+   * @return \App\Entity\Type\Status
+   */
   public function save(Status $entity):Status
   {
     $savedEntity = $this->repository->save($entity);

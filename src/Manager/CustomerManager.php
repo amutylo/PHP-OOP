@@ -7,7 +7,7 @@ use App\Entity\Type\Customer;
 use App\Hydration\CustomerHydrator;
 use App\Manager\AbstractManager;
 use App\Entity\Type\Status;
-use App\Repository\Type\CustomerRepositorys;
+use App\Repository\Type\CustomerRepository;
 
 class CustomerManager extends AbstractManager
 {
@@ -20,9 +20,8 @@ class CustomerManager extends AbstractManager
 
   private $connection;
 
-  public function __construct(Connection $connection, CustomerRepository $repository)
+  public function __construct(CustomerRepository $repository)
   {
-    $this->connection = $connection;
     $this->repository = $repository;
   }
 
@@ -51,27 +50,9 @@ class CustomerManager extends AbstractManager
 
   }
 
-  public function save(Customer $entity):Customer
+  public function save(Customer $entity)
   {
-    if (null === $entity->getId()) {
-      $sql = "INSERT INTO `customer` (`first_name`, `last_name`, `company_name`) VALUE (?,?);";
-      $data = [
-        $entity->getFirstName(),
-        $entity->getLastName(),
-        $entity->getCompanyName()
-      ];
-    }
-    else {
-      $sql = 'UPDATE `customer` SET `first_name` = ?, `last_name` = ?, `company_name` = ? WHERE `id` = ?;';
-      $data = [
-        $entity->getFirstName(),
-        $entity->getLastName(),
-        $entity->getCompanyName(),
-        $entity->getId()
-      ];
-    }
-    $dbCon = $this->connection->open();
-    $dbCon->prepare($sql);
-    $dbCon->execute($data);
+    $savedEntity = $this->repository->save($entity);
+    return $savedEntity;
   }
 }

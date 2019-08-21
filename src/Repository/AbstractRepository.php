@@ -3,7 +3,16 @@ namespace App\Repository;
 
 abstract class AbstractRepository
 {
-    abstract public function findOne(int $id);
-    abstract public function findOneBy(array $options);
-    abstract public function findAllBy(array $options);
+
+  /**
+   * @param int $id
+   *
+   * @return mixed
+   */
+  abstract public function findOne(int $id);
+
+  /**
+   * @return array
+   */
+  abstract public function findAll(): array;
 }

@@ -1,9 +1,10 @@
 <?php
 
-namespace Repository\Type;
+namespace App\Repository\Type;
 
 use App\DB\QueryBuilder;
 use App\Entity\Type\Status;
+use App\Hydration\StatusHydrator;
 use App\Repository\AbstractRepository;
 
 class StatusRepository extends AbstractRepository {
@@ -16,10 +17,22 @@ class StatusRepository extends AbstractRepository {
   }
 
   /**
-   * @param array $options
+   * @return array
    */
-  public function findAllBy(array $options) {
-    // TODO: Implement findAllBy() method.
+  public function findAll(): array
+  {
+    $results = [];
+    $sql = QueryBuilder::findAll('status');
+    $dbCon = $this->connection->open();
+    $statement = $dbCon->prepare($sql);
+    $statement->execute();
+    $rows = $statement->fetchAll();
+    if (is_array($rows)) {
+      foreach ($rows as $row) {
+        $results[] = StatusHydrator::hydrate($row);
+      }
+    }
+    return $results;
   }
 
   /**
