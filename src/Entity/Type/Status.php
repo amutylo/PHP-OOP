@@ -10,9 +10,9 @@ class Status extends AbstractEntity implements GenericEntityInterface
      */
     private $internalName = '';
 
-    /**
-     * @var null
-     */
+  /**
+   * @var string 
+   */
     private $name = '';
 
   /**
@@ -43,11 +43,11 @@ class Status extends AbstractEntity implements GenericEntityInterface
   }
 
   /**
-   * @param $name
+   * @param String $name
    *
    * @return Status
    */
-  public function setName($name): Status
+  public function setName(String $name): Status
   {
     $this->name = $name;
     $this->internalName = strtoupper($name);

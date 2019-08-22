@@ -20,9 +20,9 @@ abstract class AbstractEntity
      */
     protected $dateUpdated;
 
-    /**
-     * @return null
-     */
+  /**
+   * @return int
+   */
     public function getId(): int
     {
         return $this->id;
