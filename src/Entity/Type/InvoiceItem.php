@@ -1,93 +1,33 @@
 <?php
 namespace App\Entity\Type;
-
 use App\Entity\AbstractEntity;
-
 class InvoiceItem extends AbstractEntity implements GenericEntityInterface
 {
     /**
      * @var string
      */
     private $reference = '';
-
-  /**
-   * @var int 
-   */
+    /**
+     * @var string
+     */
+    private $description = '';
+    /**
+     * @var float
+     */
+    private $unitPrice = 0.0;
+    /**
+     * @var int
+     */
     private $units = 0;
-    
-
     /**
      * @var float
      */
     private $total = 0.0;
 
   /**
-   * @var float 
+   * @var
    */
-    private $unitPrice = 0.0;
-
-
-  /**
-   * @return int
-   */
-  public function getUnits(): int 
-  {
-    return $this->units;
-  }
-
-  /**
-   * @param int $units
-   *
-   * @return InvoiceItem
-   */
-  public function setUnits(int $units): InvoiceItem
-  {
-    $this->units = $units;
-    return $this;
-  }
-
-  /**
-   * @return float
-   */
-  public function getTotal(): float
-  {
-    return $this->total;
-  }
-
-  /**
-   * @param float $total
-   *
-   * @return InvoiceItem
-   */
-  public function setTotal(float $total): InvoiceItem
-  {
-    $this->total = $total;
-    return $this;
-  }
-
-  /**
-   * @return string
-   */
-  public function getDescription(): string
-  {
-    return $this->description;
-  }
-
-  /**
-   * @param string $description
-   *
-   * @return InvoiceItem
-   */
-  public function setDescription(string $description): InvoiceItem
-  {
-    $this->description = $description;
-    return $this;
-  }
-
-   /**
-   * @var string 
-   */
-    private $description = '';
+    private $invoice;
 
     /**
      * @return string
@@ -96,8 +36,6 @@ class InvoiceItem extends AbstractEntity implements GenericEntityInterface
     {
         return $this->reference;
     }
-    
-
     /**
      * @param string $reference
      *
@@ -108,22 +46,87 @@ class InvoiceItem extends AbstractEntity implements GenericEntityInterface
         $this->reference = $reference;
         return $this;
     }
+    /**
+     * @return string
+     */
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+    /**
+     * @return float
+     */
+    public function getUnitPrice(): float
+    {
+        return $this->unitPrice;
+    }
+    /**
+     * @return int
+     */
+    public function getUnits(): int
+    {
+        return $this->units;
+    }
+    /**
+     * @return float
+     */
+    public function getTotal(): float
+    {
+        return $this->total;
+    }
+    /**
+     * @param string $description
+     * @return InvoiceItem
+     */
+    public function setDescription(string $description): InvoiceItem
+    {
+        $this->description = $description;
+        return $this;
+    }
+    /**
+     * @param int $units
+     * @return InvoiceItem
+     */
+    public function setUnits(int $units): InvoiceItem
+    {
+        $this->units = $units;
+        return $this;
+    }
+    /**
+     * @param float $unitPrice
+     * @return InvoiceItem
+     */
+    public function setUnitPrice(float $unitPrice): InvoiceItem
+    {
+        $this->unitPrice = $unitPrice;
+        return $this;
+    }
+    /**
+     * @param float $total
+     * @return InvoiceItem
+     */
+    public function setTotal(float $total): InvoiceItem
+    {
+        $this->total = $total;
+        return $this;
+    }
 
   /**
-   * @return float
+   * @return Invoice
    */
-  public function getUnitPrice(): float {
-    return $this->unitPrice;
+  public function getInvoice(): Invoice
+  {
+
   }
 
   /**
-   * @param float $unitPrice
+   * @param Invoice $invoice
    *
    * @return InvoiceItem
    */
-  public function setUnitPrice(float $unitPrice): InvoiceItem {
-    $this->unitPrice = $unitPrice;
+  public function setInvoice(Invoice $invoice): InvoiceItem
+  {
+    $this->invoice = $invoice;
     return $this;
   }
-    
 }

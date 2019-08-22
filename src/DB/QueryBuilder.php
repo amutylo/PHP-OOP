@@ -70,4 +70,15 @@ class QueryBuilder
     {
         return "SELECT * FROM `".$table."`";
     }
+
+  /**
+   * @param string $table
+   * @param array $options
+   *
+   * @return string
+   */
+  public static function findAllBy(string $table, array $options = [])
+  {
+    return "SELECT * FROM `".$table."`";
+  }
 }
