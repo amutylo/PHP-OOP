@@ -30,15 +30,32 @@ class QueryBuilder
      */
     public static function update(array $data, string $table, array $where): string
     {
-        $whereSQL = '';
-        foreach($where as $key => $value) {
-            $whereSQL.='`'.$key.'` =?';
-        }
-        $sql = 'UPDATE `'.$table.'` SET ';
-        $fields = implode('` =?, `', array_keys($data));
-        $sql.= "`".$fields."` =?" . " WHERE " . $whereSQL .";";
-        return $sql;
+      $sql = 'UPDATE `'.$table.'` SET ' . self::fields($data) . "WHERE " . self::where($where) .";";
+      return $sql;
     }
+
+  /**
+   * @param array $data
+   *
+   * @return string
+   */
+    public static function fields(array $data = []): string 
+    {
+      $sql = '';
+      $counter = 0;
+      $total = count($data);
+      foreach ($data as $field => $value) {
+        $counter++;
+        $sql .= '`' . $field . '` =:`' .$value ;
+        if ($counter < $total) {
+          $sql .= ', ';
+        } else {
+          $sql .= ' ';
+        }
+      }
+      return $sql;
+    }
+
     /**
      * @param array $data
      * @param string $table
