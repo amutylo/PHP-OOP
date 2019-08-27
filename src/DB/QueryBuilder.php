@@ -72,13 +72,33 @@ class QueryBuilder
     }
 
   /**
+   * @param array $conditions
+   * @return string
+   */
+  public static function where(array $conditions = []) {
+    $sql ='';
+    $total = count($conditions);
+    $num = 0;
+    foreach($conditions as $field => $value) {
+      $num ++;
+      $sql.='`'.$field.'` =:'.$value;
+      if($num < $total) {
+        $sql.=' AND ';
+      }
+    }
+    return $sql;
+  }
+
+
+  /**
    * @param string $table
-   * @param array $options
+   * @param array $where
    *
    * @return string
    */
-  public static function findAllBy(string $table, array $options = [])
+  public static function findAllBy(string $table, array $where = [])
   {
-    return "SELECT * FROM `".$table."`";
+    $sql = "SELECT * FROM `".$table."` WHERE " .self::where($where);
+    return $sql;
   }
 }
